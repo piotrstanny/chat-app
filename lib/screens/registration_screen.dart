@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_chat_app/components/rounded_button.dart';
 import 'package:flutter_chat_app/components/rounded_input.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_chat_app/screens/chat_screen.dart';
 
