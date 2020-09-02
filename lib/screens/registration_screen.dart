@@ -10,6 +10,9 @@ class RegistrationScreen extends StatefulWidget {
 }
 
 class _RegistrationScreenState extends State<RegistrationScreen> {
+  String email;
+  String password;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -33,8 +36,10 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
             RoundedInput(
               borderColour: Colors.blueAccent,
               hintText: 'Enter your email',
+              obscureText: false,
+              inputType: TextInputType.emailAddress,
               onChanged: (value) {
-                //Do something with the user input.
+                email = value;
               },
             ),
             SizedBox(
@@ -43,8 +48,10 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
             RoundedInput(
               borderColour: Colors.blueAccent,
               hintText: 'Enter your password',
+              inputType: TextInputType.text,
+              obscureText: true,
               onChanged: (value) {
-                //Do something with the user input.
+                password = value;
               },
             ),
             SizedBox(
@@ -54,7 +61,8 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
               title: 'Register',
               colour: Colors.blueAccent,
               onPressed: () {
-                Navigator.pop(context);
+                print(email);
+                print(password);
               },
             ),
           ],

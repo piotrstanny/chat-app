@@ -33,6 +33,8 @@ class _LoginScreenState extends State<LoginScreen> {
             RoundedInput(
               borderColour: Colors.lightBlueAccent,
               hintText: 'Enter your email',
+              inputType: TextInputType.emailAddress,
+              obscureText: false,
               onChanged: (value) {
                 //Do something with the user input.
               },
@@ -43,6 +45,8 @@ class _LoginScreenState extends State<LoginScreen> {
             RoundedInput(
               borderColour: Colors.lightBlueAccent,
               hintText: 'Enter your password',
+              inputType: TextInputType.text,
+              obscureText: true,
               onChanged: (value) {
                 //Do something with the user input.
               },
