@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_chat_app/components/rounded_button.dart';
 import 'package:flutter_chat_app/components/rounded_input.dart';
-import 'package:flutter_chat_app/screens/registration_screen.dart';
 
 class LoginScreen extends StatefulWidget {
   static const String id = 'login';
