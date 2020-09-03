@@ -2,7 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_chat_app/constants.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutter_chat_app/components/message_bubble.dart';
+import 'package:flutter_chat_app/components/messages_stream.dart';
 
 class ChatScreen extends StatefulWidget {
   static const String id = 'chat';
@@ -62,34 +62,7 @@ class _ChatScreenState extends State<ChatScreen> {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
-            StreamBuilder<QuerySnapshot>(
-              stream: _firestore.collection('messages').snapshots(),
-              builder: (context, snapshot) {
-                if (snapshot.hasData) {
-                  final messages = snapshot.data.docs;
-                  List<MessageBubble> messageBubbles = [];
-
-                  for (var message in messages) {
-                    final messageSender = message.get('sender');
-                    final messageText = message.get('text');
-                    final messageBubble = MessageBubble(
-                      sender: messageSender,
-                      text: messageText,
-                    );
-                    messageBubbles.add(messageBubble);
-                  }
-                  return Expanded(
-                    child: ListView(
-                      padding: EdgeInsets.symmetric(
-                          horizontal: 10.0, vertical: 20.0),
-                      children: messageBubbles,
-                    ),
-                  );
-                } else {
-                  return Text('Loading...');
-                }
-              },
-            ),
+            MessagesStream(),
             Container(
               decoration: kMessageContainerDecoration,
               child: Row(
