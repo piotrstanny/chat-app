@@ -4,16 +4,23 @@ class RoundedInput extends StatelessWidget {
   RoundedInput(
       {@required this.borderColour,
       @required this.hintText,
+      @required this.obscureText,
+      @required this.inputType,
       @required this.onChanged});
 
   final Function onChanged;
   final String hintText;
   final Color borderColour;
+  final bool obscureText;
+  final TextInputType inputType;
 
   @override
   Widget build(BuildContext context) {
     return TextField(
+      obscureText: obscureText,
+      keyboardType: inputType,
       onChanged: onChanged,
+      textAlign: TextAlign.center,
       style: TextStyle(
         color: Colors.black,
       ),
