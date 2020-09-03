@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_chat_app/constants.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter_chat_app/components/message_bubble.dart';
 
 class ChatScreen extends StatefulWidget {
   static const String id = 'chat';
@@ -118,31 +119,6 @@ class _ChatScreenState extends State<ChatScreen> {
               ),
             ),
           ],
-        ),
-      ),
-    );
-  }
-}
-
-class MessageBubble extends StatelessWidget {
-  MessageBubble({this.sender, this.text});
-
-  final String sender;
-  final String text;
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: EdgeInsets.all(10.0),
-      child: Material(
-        elevation: 10.0,
-        color: Colors.blueGrey[700],
-        child: Padding(
-          padding: EdgeInsets.all(15.0),
-          child: Text(
-            '$text from $sender',
-            style: TextStyle(color: Colors.white, fontSize: 15.0),
-          ),
         ),
       ),
     );
