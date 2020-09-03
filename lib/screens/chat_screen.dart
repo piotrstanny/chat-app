@@ -20,6 +20,7 @@ class _ChatScreenState extends State<ChatScreen> {
   void initState() {
     super.initState();
     getCurrentUser();
+    messagesStream();
   }
 
   void getCurrentUser() {
@@ -27,23 +28,29 @@ class _ChatScreenState extends State<ChatScreen> {
       final user = _auth.currentUser;
       if (user != null) {
         loggedInUser = user;
-        print(loggedInUser.email);
       }
     } catch (e) {
       print(e);
     }
   }
 
-  void getMessages() {
-    print('pressed');
-    FirebaseFirestore.instance
-        .collection('messages')
-        .get()
-        .then((QuerySnapshot querySnapshot) => {
-              querySnapshot.docs.forEach((doc) {
-                print(doc.get('sender'));
-              })
-            });
+//  void getMessages() {
+//    _firestore
+//        .collection('messages')
+//        .get()
+//        .then((QuerySnapshot querySnapshot) => {
+//              querySnapshot.docs.forEach((doc) {
+//                print(doc.get('sender'));
+//              })
+//            });
+//  }
+
+  void messagesStream() {
+    _firestore.collection('messages').snapshots().listen((event) {
+      event.docs.forEach((doc) {
+        print('${doc.get('text')}, ${doc.get('sender')}');
+      });
+    });
   }
 
   @override
@@ -55,7 +62,6 @@ class _ChatScreenState extends State<ChatScreen> {
           IconButton(
               icon: Icon(Icons.close),
               onPressed: () {
-                getMessages();
 //                _auth.signOut();
 //                Navigator.pop(context);
               }),
