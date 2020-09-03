@@ -17,3 +17,13 @@ const kMessageContainerDecoration = BoxDecoration(
     top: BorderSide(color: Colors.lightBlueAccent, width: 2.0),
   ),
 );
+
+const kSendersMessage = BorderRadius.only(
+    topLeft: Radius.circular(25.0),
+    bottomLeft: Radius.circular(25.0),
+    bottomRight: Radius.circular(25.0));
+
+const kReceiversMessage = BorderRadius.only(
+    topRight: Radius.circular(25.0),
+    bottomLeft: Radius.circular(25.0),
+    bottomRight: Radius.circular(25.0));
