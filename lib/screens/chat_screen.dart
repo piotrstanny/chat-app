@@ -53,7 +53,7 @@ class _ChatScreenState extends State<ChatScreen> {
                 Navigator.pop(context);
               }),
         ],
-        title: Text('⚡️Chat'),
+        title: Text('⚡️Flash Chat'),
         backgroundColor: Colors.lightBlue,
       ),
       body: SafeArea(
@@ -66,17 +66,23 @@ class _ChatScreenState extends State<ChatScreen> {
               builder: (context, snapshot) {
                 if (snapshot.hasData) {
                   final messages = snapshot.data.docs;
-                  List<Text> messageWidgets = [];
+                  List<MessageBubble> messageBubbles = [];
 
                   for (var message in messages) {
                     final messageSender = message.get('sender');
                     final messageText = message.get('text');
-                    final messageWidget =
-                        Text('$messageText from $messageSender');
-                    messageWidgets.add(messageWidget);
+                    final messageBubble = MessageBubble(
+                      sender: messageSender,
+                      text: messageText,
+                    );
+                    messageBubbles.add(messageBubble);
                   }
-                  return Column(
-                    children: messageWidgets,
+                  return Expanded(
+                    child: ListView(
+                      padding: EdgeInsets.symmetric(
+                          horizontal: 10.0, vertical: 20.0),
+                      children: messageBubbles,
+                    ),
                   );
                 } else {
                   return Text('Loading...');
@@ -112,6 +118,31 @@ class _ChatScreenState extends State<ChatScreen> {
               ),
             ),
           ],
+        ),
+      ),
+    );
+  }
+}
+
+class MessageBubble extends StatelessWidget {
+  MessageBubble({this.sender, this.text});
+
+  final String sender;
+  final String text;
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: EdgeInsets.all(10.0),
+      child: Material(
+        elevation: 10.0,
+        color: Colors.blueGrey[700],
+        child: Padding(
+          padding: EdgeInsets.all(15.0),
+          child: Text(
+            '$text from $sender',
+            style: TextStyle(color: Colors.white, fontSize: 15.0),
+          ),
         ),
       ),
     );
