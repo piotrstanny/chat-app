@@ -1,6 +1,8 @@
 # flutter_chat_app
 
-Flutter Mobile App - live chat app using Google Firebase Firestore and Authentication.
+Flutter Mobile App - live group chat app.
+- Using Google Firebase Firestore,
+- Using Google Firebase Authentication.
 
 ![Farmers Market Finder Demo](https://media.giphy.com/media/ZCezTcbzbzQLVWkbqP/giphy.gif)
 
